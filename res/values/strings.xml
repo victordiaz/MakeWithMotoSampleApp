@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" >Make With Moto!
+    </string>
+    <string name="error_configuration">Please configure your serial port first.</string>
+    <string name="error_security">You do not have read/write permission to the serial
+        port.</string>
+    <string name="error_unknown">The serial port can not be opened for an unknown
+        reason.</string>
+
+</resources>

@@ -1,0 +1,10 @@
+//TODO 
+clean bluetooth 
+clean MAKR 
+
+
+rotation stable 
+better plot library 
+fragment add 
+javascript test 
+
