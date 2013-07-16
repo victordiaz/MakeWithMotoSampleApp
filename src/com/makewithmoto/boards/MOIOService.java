@@ -1,5 +1,7 @@
 package com.makewithmoto.boards;
 
+import com.makewithmoto.example.ActivityMOIO;
+
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.exception.ConnectionLostException;
@@ -9,6 +11,8 @@ import ioio.lib.util.android.IOIOService;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 
 /**
  * An example IOIO service. While this service is alive, it will attempt to
@@ -17,9 +21,8 @@ import android.util.Log;
  */
 public class MOIOService extends IOIOService {
 	
-	
 	private static final String TAG = "MOIO Service";
-
+	
 	@Override
 	protected IOIOLooper createIOIOLooper() {
 		return new BaseIOIOLooper() {
@@ -34,10 +37,11 @@ public class MOIOService extends IOIOService {
 			@Override
 			public void loop() throws ConnectionLostException,
 					InterruptedException {
-				led_.write(false);
-				Thread.sleep(500);
-				led_.write(true);
-				Thread.sleep(500);
+				//led_.write(!ledon.isChecked());
+				//led_.write(false);
+				//Thread.sleep(500);
+				//led_.write(true);
+				//Thread.sleep(500);
 			}
 		};
 	}
