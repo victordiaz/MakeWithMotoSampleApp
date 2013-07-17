@@ -83,9 +83,6 @@ public class ActivityBT extends FragmentActivity {
 
 			}
 		}); 
-
-
-
 		
 	}
 
