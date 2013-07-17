@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:padding="2dp"
     tools:context=".ActivityMAKr" >
-
+    
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/f1"
-        android:layout_below="@+id/text"
         android:layout_marginTop="2dp"
         android:background="#22000000"
         android:orientation="horizontal" >
@@ -19,8 +18,6 @@
             android:id="@+id/ledon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:checked="false"
@@ -34,7 +31,8 @@
             android:layout_weight="1"
             android:checked="false"
             android:text="LED OFF" />
-    </RadioGroup>
+        
+    </RadioGroup>	
 
     <FrameLayout
         android:id="@+id/f1"
@@ -45,33 +43,41 @@
         android:visibility="visible" >
 
     </FrameLayout>
-
-    <!--
-       <fragment
-           android:id="@+id/fragment1"
-           android:name="com.motorola.gopi.ledcontrol.CameraFragment"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentTop="true" />
-    -->
-
+    
     <com.makewithmoto.makr.views.PlotView
         android:id="@+id/plotView1"
         android:layout_width="wrap_content"
         android:layout_height="102dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/radioGroup" />
+        android:layout_below="@+id/radioGroup"
+         />
 
-    
-    
     <FrameLayout
         android:id="@+id/f2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
-		android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/f1"
         android:visibility="visible" >
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/pushbuttonTextView"
+        android:layout_width="252dp"
+        android:layout_height="145dp"
+        android:layout_alignBottom="@+id/f1"
+        android:layout_alignLeft="@+id/f1"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/f1"
+        android:text="@string/pushbuttonstring" />
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/pushbuttonTextView"
+        android:layout_marginTop="55dp" />
+
 </RelativeLayout>

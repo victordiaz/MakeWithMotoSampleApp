@@ -1,7 +1,15 @@
 package com.makewithmoto.example;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+import ioio.lib.api.PwmOutput;
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.DigitalOutput;
+import ioio.lib.api.DigitalInput;
 import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
 import ioio.lib.util.IOIOLooper;
@@ -16,31 +24,31 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.view.View.OnDragListener;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
-import android.widget.Toast;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
-import com.makewithmoto.makr.fragments.DebugFragment;
 import com.makewithmoto.makr.views.PlotView;
 import com.makewithmoto.makr.views.PlotView.Plot;
 
-//import com.makewithmoto.boards.MOIOService;
-
 /*
  * Example using the MOIO board 
- * 
- * 
  */
 
 @SuppressLint("NewApi")
 public class ActivityMOIO extends IOIOActivity {
 
+	private static final String MAKR_ENABLE = "/sys/class/makr/makr/5v_enable";
+	
 	private static final String TAG = "ExAPP";
 	RadioButton ledon, ledoff;
 
-	private DebugFragment df;
+	TextView buttonread;
+	SeekBar pwmcontrol;
+	//private DebugFragment df;
 	private boolean f2V = true;
 
 	ActionBar actionBar;
@@ -48,43 +56,41 @@ public class ActivityMOIO extends IOIOActivity {
 	PlotView graphView;
 	Plot p1;
 
+	int seekchange = 0;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_makr);
-
-		// start IOIO
-		// startService(new Intent(this, MOIOService.class));
-
+		
+		// turn the MOIO on
+		enable(true);
+		
+		pwmcontrol = (SeekBar) findViewById(R.id.seekBar1);
+		
+		pwmcontrol.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+					seekchange = progress;	
+				}
+	
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+	
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		buttonread = (TextView) findViewById(R.id.pushbuttonTextView);
+		
 		ledon = (RadioButton) findViewById(R.id.ledon);
 		ledoff = (RadioButton) findViewById(R.id.ledoff);
-
-		ledon.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-
-				Log.d(TAG, "val " + isChecked); // prints in logcat
-				if (isChecked) {
-					// led_.write(false);
-					Toast.makeText(getApplicationContext(), "LEDON",
-							Toast.LENGTH_LONG).show();
-				}
-			}
-		});
-
-		ledoff.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					Toast.makeText(getApplicationContext(), "LEDOFF",
-							Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
 
 		actionBar = getActionBar();
 		actionBar.setDisplayUseLogoEnabled(false);
@@ -92,60 +98,52 @@ public class ActivityMOIO extends IOIOActivity {
 		actionBar.setLogo(null);
 		actionBar.setTitle("MakeWithMoto");
 
-		df = new DebugFragment();
-		addFragment(df, R.id.f1);
+		//df = new DebugFragment();
+		//addFragment(df, R.id.f1);
 
 		graphView = (PlotView) findViewById(R.id.plotView1);
+		
 		p1 = graphView.new Plot(Color.RED);
 		graphView.addPlot(p1);
-		graphView.setBoundaries(3, 4);
+		
+		//TODO fix this 
+		graphView.setLimits(-10, 10);
 
 	}
 
 	class Looper extends BaseIOIOLooper {
-		/** The on-board LED. */
+		
+		/* create instances for each interface */
 		private DigitalOutput led_;
-		private AnalogInput in;
-
-		// private DigitalInput pushbutton_;
+		private AnalogInput analogin_;
+		private DigitalInput pushbutton_;
+		private PwmOutput pwm_;
 
 		/**
 		 * Called every time a connection with IOIO has been established.
 		 * Typically used to open pins.
-		 * 
-		 * @throws ConnectionLostException
-		 *             When IOIO connection is lost.
-		 * 
-		 * @see ioio.lib.util.AbstractIOIOActivity.IOIOThread#setup()
 		 */
 		@Override
 		protected void setup() throws ConnectionLostException {
-			in = ioio_.openAnalogInput(31);
-			led_ = ioio_.openDigitalOutput(0, true);
-			// pushbutton_ = ioio_.openDigitalInput(1,
-			// DigitalInput.Spec.Mode.PULL_UP);
+			analogin_ = ioio_.openAnalogInput(31);
+			led_ = ioio_.openDigitalOutput(0, true); // start with the LED off
+			pushbutton_ = ioio_.openDigitalInput(1, DigitalInput.Spec.Mode.PULL_UP);
+			pwm_ = ioio_.openPwmOutput(2, 100);
+			//pwm_.setDutyCycle(0);
+			
 		}
 
 		/**
 		 * Called repetitively while the IOIO is connected.
-		 * 
-		 * @throws ConnectionLostException
-		 *             When IOIO connection is lost.
-		 * @throws InterruptedException
-		 * 
-		 * @see ioio.lib.util.AbstractIOIOActivity.IOIOThread#loop()
 		 */
 		@Override
 		public void loop() throws ConnectionLostException, InterruptedException {
-			led_.write(!ledon.isChecked());
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-			}
-			final float volts = in.getVoltage();
-			Log.d(TAG, "val " + volts); // prints in logcat
 			
-			//needs some work
+			// DIGITAL OUT - blinks LED on button press
+			led_.write(!ledon.isChecked());
+			
+			// ANALOG IN - reads a voltage between 0 and 3.3V
+			final float volts = analogin_.getVoltage();
 			runOnUiThread(new Runnable() {
 				
 				@Override
@@ -153,13 +151,70 @@ public class ActivityMOIO extends IOIOActivity {
 					graphView.setValue(p1, volts);					
 				}
 			});
+			//Log.d(TAG, "analog volts " + volts);
+			
+			// DIGITAL IN - reads a push button press
+			boolean value = pushbutton_.read();
+			String pushbuttontxt;
+			if (!value) {
+				pushbuttontxt = getString(R.string.pushbuttonstring) + " active!";
+			} else {
+				pushbuttontxt = getString(R.string.pushbuttonstring);
+			}
+			setText(pushbuttontxt);
+			
+			// PWM OUT - outputs pulse width modulated waveform
+			int pwmvalue = (1000 + (seekchange*10));
+			pwm_.setPulseWidth(pwmvalue); //set a number between 1000 and 2000
+			//Log.d(TAG, "seek " + pwmvalue);
+			
+			// this slows down the loop to save process time
+			/*try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+			}*/
+			
 		}
 	}
+	
+	// needed to print button read
+	private void setText(final String str1) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				buttonread.setText(str1);
+			}
+		});
+	}
+	
+	/*
+	 * Turn on or off the device
+	 */
+    public void enable(boolean value)
+    {
+        BufferedWriter writer = null;
+        try {
+            FileOutputStream fos = new FileOutputStream(MAKR_ENABLE);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+            writer = new BufferedWriter(osw);
+            if (value)
+                writer.write("on\n");
+            else
+                writer.write("off\n");
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage());
+        } finally {
+            if (writer != null) {
+                try { writer.close(); } catch (IOException e) { }
+            }
+        }
+    }
+
 
 	/**
 	 * A method to create our IOIO thread.
-	 * 
-	 * @see ioio.lib.util.AbstractIOIOActivity#createIOIOThread()
 	 */
 	protected IOIOLooper createIOIOLooper() {
 		return new Looper();

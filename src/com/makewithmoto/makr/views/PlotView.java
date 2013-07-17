@@ -120,7 +120,7 @@ public class PlotView extends View {
 
 		}
 		// plotValues = new Vector<Float>();
-		setBoundaries(100, 130);
+		setLimits(0, 1);
 		mReady = true;
 
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -142,10 +142,10 @@ public class PlotView extends View {
 				mPaint.setStyle(Style.STROKE);
 				mPaint.setColor(p.color);
 
-				
-				canvas.drawText(
-						"hola " + mNumPoints + " " + p.plotValues.size(), 100,
-						100, mPaint);
+				//Uncomment to try 
+				//canvas.drawText(
+				//		"hola " + mNumPoints + " " + p.plotValues.size() + " " + p.plotValues.get(p.plotValues.size() - 1), 100,
+				//		100, mPaint);
 				
 				int i = 0;
 				
@@ -153,9 +153,9 @@ public class PlotView extends View {
 				for (int x = 0; x < mWidth; x += mDefinition) {
 
 					y = CanvasUtils.map((float) p.plotValues.get(i),
-							(float) mMinBoundary, (float) mMaxBoundary, 0f,
-							(float) mHeight);
-					canvas.drawCircle(x, y, 5, mPaint);
+							(float) mMinBoundary, (float) mMaxBoundary, (float) mHeight, 0f);
+					canvas.drawPoint(x, y, mPaint);
+					//canvas.drawCircle(x, y, 5, mPaint);
 
 					if (i < mNumPoints - 1) {
 						i++;
@@ -199,7 +199,7 @@ public class PlotView extends View {
 
 	}
 
-	public void setBoundaries(int min, int max) {
+	public void setLimits(int min, int max) {
 		mMinBoundary = min;
 		mMaxBoundary = max;
 	} 

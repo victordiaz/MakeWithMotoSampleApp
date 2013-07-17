@@ -29,45 +29,47 @@ public final class R {
         public static final int up=0x7f020009;
     }
     public static final class id {
-        public static final int CameraView=0x7f0a0014;
+        public static final int CameraView=0x7f0a0016;
         public static final int boardBT=0x7f0a000a;
         public static final int boardMAKr=0x7f0a0008;
         public static final int boardMOIO=0x7f0a0009;
-        public static final int button_scan=0x7f0a0013;
-        public static final int button_send=0x7f0a0021;
-        public static final int buttonslayout=0x7f0a0017;
-        public static final int content=0x7f0a0026;
-        public static final int edit_text_out=0x7f0a0020;
+        public static final int button_scan=0x7f0a0015;
+        public static final int button_send=0x7f0a0023;
+        public static final int buttonslayout=0x7f0a0019;
+        public static final int content=0x7f0a0028;
+        public static final int edit_text_out=0x7f0a0022;
         public static final int f1=0x7f0a0001;
         public static final int f2=0x7f0a0006;
-        public static final int imageView1=0x7f0a001b;
-        public static final int in=0x7f0a001e;
+        public static final int imageView1=0x7f0a001d;
+        public static final int in=0x7f0a0020;
         public static final int ledoff=0x7f0a0004;
         public static final int ledon=0x7f0a0003;
         public static final int linearLayout1=0x7f0a0007;
-        public static final int lockList=0x7f0a001a;
-        public static final int logWindow=0x7f0a0015;
-        public static final int new_devices=0x7f0a0012;
-        public static final int paired_devices=0x7f0a0010;
-        public static final int pdName=0x7f0a0018;
-        public static final int pdSend=0x7f0a0019;
+        public static final int lockList=0x7f0a001c;
+        public static final int logWindow=0x7f0a0017;
+        public static final int new_devices=0x7f0a0014;
+        public static final int paired_devices=0x7f0a0012;
+        public static final int pdName=0x7f0a001a;
+        public static final int pdSend=0x7f0a001b;
         public static final int plotView1=0x7f0a0005;
+        public static final int pushbuttonTextView=0x7f0a000d;
         public static final int radioGroup=0x7f0a0000;
-        public static final int sendInput=0x7f0a0016;
-        public static final int send_text_container=0x7f0a001f;
+        public static final int seekBar1=0x7f0a000e;
+        public static final int sendInput=0x7f0a0018;
+        public static final int send_text_container=0x7f0a0021;
         public static final int text=0x7f0a0002;
         public static final int textView1=0x7f0a000b;
         public static final int textView2=0x7f0a000c;
-        public static final int title_left_text=0x7f0a000d;
-        public static final int title_new_devices=0x7f0a0011;
-        public static final int title_paired_devices=0x7f0a000f;
-        public static final int title_right_text=0x7f0a000e;
-        public static final int toolbar_btn_connect=0x7f0a0022;
-        public static final int toolbar_btn_disconnect=0x7f0a0023;
-        public static final int toolbar_btn_pause=0x7f0a0024;
-        public static final int toolbar_btn_play=0x7f0a0025;
-        public static final int video_parent=0x7f0a001c;
-        public static final int video_view=0x7f0a001d;
+        public static final int title_left_text=0x7f0a000f;
+        public static final int title_new_devices=0x7f0a0013;
+        public static final int title_paired_devices=0x7f0a0011;
+        public static final int title_right_text=0x7f0a0010;
+        public static final int toolbar_btn_connect=0x7f0a0024;
+        public static final int toolbar_btn_disconnect=0x7f0a0025;
+        public static final int toolbar_btn_pause=0x7f0a0026;
+        public static final int toolbar_btn_play=0x7f0a0027;
+        public static final int video_parent=0x7f0a001e;
+        public static final int video_view=0x7f0a001f;
     }
     public static final class layout {
         public static final int activity_bt=0x7f030000;
@@ -104,6 +106,7 @@ public final class R {
         public static final int error_configuration=0x7f070001;
         public static final int error_security=0x7f070002;
         public static final int error_unknown=0x7f070003;
+        public static final int pushbuttonstring=0x7f070004;
     }
     public static final class style {
         /** 
