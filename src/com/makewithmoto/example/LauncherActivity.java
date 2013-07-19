@@ -21,10 +21,8 @@ public class LauncherActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		ActionBar actionBar = getActionBar();
-		actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFFFFF));
-		
-		//startActivity(new Intent(this, ActivityJavascript.class));
-		
+		actionBar.setBackgroundDrawable(new ColorDrawable(0x000000));
+				
 	}
 	
 	public void launchActivityBT(View view) {

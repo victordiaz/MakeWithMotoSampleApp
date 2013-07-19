@@ -42,7 +42,7 @@ public class ActivityBT extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_makr);
+		setContentView(R.layout.activity_bt);
 
 
 		actionBar = getActionBar();

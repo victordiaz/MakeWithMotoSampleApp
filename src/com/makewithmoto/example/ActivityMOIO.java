@@ -61,7 +61,7 @@ public class ActivityMOIO extends IOIOActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_makr);
+		setContentView(R.layout.activity_ioio);
 		
 		// turn the MOIO on
 		enable(true);

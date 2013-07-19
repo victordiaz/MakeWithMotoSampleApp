@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 import com.makewithmoto.boards.MAKr;
 import com.makewithmoto.boards.MAKr.MAKrListener;
-import com.makewithmoto.bt.SimpleBT;
-import com.makewithmoto.bt.SimpleBT.SimpleBTListener;
 import com.makewithmoto.makr.fragments.DebugFragment;
 import com.makewithmoto.makr.views.PlotView;
 import com.makewithmoto.makr.views.PlotView.Plot;

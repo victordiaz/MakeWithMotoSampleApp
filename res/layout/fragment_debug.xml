@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/buttonslayout"
-        android:background="#550000ff"
+        android:background="@color/mwmgray"
         android:orientation="vertical" >
 
     </ListView>
