@@ -57,8 +57,8 @@ public class ActivityMOIO extends IOIOActivity {
 		enable(true);
 		
 		//uartReceive = (TextView) findViewById(R.id.);
-		uartTxSend = (Button) findViewById(R.id.button1);
-		uartTxData = (EditText) findViewById(R.id.editText1);
+		//uartTxSend = (Button) findViewById(R.id.button1);
+		//uartTxData = (EditText) findViewById(R.id.editText1);
 		pwmcontrol = (SeekBar) findViewById(R.id.seekBar1);
 		buttonread = (TextView) findViewById(R.id.pushbuttonTextView);
 		ledon = (RadioButton) findViewById(R.id.ledon);
