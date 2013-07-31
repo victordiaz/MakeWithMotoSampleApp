@@ -172,8 +172,8 @@ public class CameraFragment extends Fragment {
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction() & MotionEvent.ACTION_MASK) {
 				case MotionEvent.ACTION_MOVE:
-					v.setX(event.getX());
-					v.setY(event.getY());
+					//v.setX(event.getX());
+					//v.setY(event.getY());
 			            
 			            
 					Log.d(TAG, "" + event.getX());
@@ -251,7 +251,7 @@ public class CameraFragment extends Fragment {
 
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void onPictureTaken(byte[] data, Camera camera) {
-		Log.i("qq2", "photo taken");
+		Log.i(TAG, "photo taken");
 
 		_fileName = Utils.getCurrentTime() + ".jpg";
 		_path = _rootPath + _fileName;
