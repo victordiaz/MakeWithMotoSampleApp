@@ -15,4 +15,6 @@ Once paired the app displays 4 different interactions, based on 4 different hard
 
 * **PWM Output:** The slide bar controls the PWM duty cycle between 1ms and 2ms on **pin 2**. Connect a servo control line to this pin (as well as power, 5V, and GND to the servo) to control the sweep of the servo.
 
+The main activity for the MOIO app is found here: /MakeWithMotoSampleApp/scr/com/makewithmoto/example/ActivityMOIO.java
+
 For more information on hardware implementations, see the [IOIO wiki](https://github.com/ytai/ioio/wiki).
