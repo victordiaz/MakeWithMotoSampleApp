@@ -1,6 +1,8 @@
 MakeWithMotoSampleApp
 =====================
 
+_This app is currently under construction, but is in a stable/usable state._
+
 To get started using the MOIO board, open the Make With Moto! app and select MOIO. The MOIO board should power on (red LED should light). The MOIO will either be paired over bluetooth or not. If paired, you should see a 'READY!!!' toast towards the bottom of the app after no more than 15 seconds. If not paired, keep the app open by hitting the 'home' button, then goto the Android's bluetooth setup utility and pair with the MOIO (the MOIO should show up as 'IOIO(xx:xx)'). The passcode to pair is '4545'. 
 
 Once paired the app displays 4 different interactions, based on 4 different hardware interfaces. From the top of the app to the bottom:
