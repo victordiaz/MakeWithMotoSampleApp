@@ -36,7 +36,8 @@
         </activity>
         <activity android:name="com.makewithmoto.example.ActivityMAKr" >
         </activity>
-        <activity android:name="com.makewithmoto.example.ActivityMOIO" >
+        <activity android:name="com.makewithmoto.example.ActivityMOIO"
+                  android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.makewithmoto.example.ActivityBT" >
         </activity>
