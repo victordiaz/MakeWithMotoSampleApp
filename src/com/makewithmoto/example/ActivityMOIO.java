@@ -26,8 +26,9 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.makewithmoto.makr.views.PlotView;
-import com.makewithmoto.makr.views.PlotView.Plot;
+
+import com.makewithmoto.views.PlotView;
+import com.makewithmoto.views.PlotView.Plot;
 
  /*
  * Example using the MOIO board 

@@ -1,4 +1,4 @@
-package com.makewithmoto.makr.fragments;
+package com.makewithmoto.fragments;
 
 import java.io.IOException;
 import java.util.Vector;

@@ -26,21 +26,19 @@ void setup() {
   digitalWrite(ledBig, LOW);
   pinMode(lightSensor, INPUT);
 
-  //Serial.println("hello");
-  //Serial.flush();
-
 }
 
 int sensorValue = 0; 
 int count = 0;
 
+
 // the loop routine runs over and over again forever:
 void loop() {
   sensorValue = analogRead(lightSensor);    
-  String msg = "pr::";
-  msg = msg + sensorValue;
-
-  Serial.println(msg);  
+  String cmd = "--> ";
+  
+  String sendString = cmd + sensorValue;
+  Serial.println(sendString);  
   Serial.flush();
   
   

@@ -1,4 +1,4 @@
-package com.makewithmoto.makr.views;
+package com.makewithmoto.views;
 
 /*
  * use vectors 
@@ -120,7 +120,7 @@ public class PlotView extends View {
 
 		}
 		// plotValues = new Vector<Float>();
-		setLimits(0, 1);
+		setLimits(-7, 7);
 		mReady = true;
 
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -141,6 +141,7 @@ public class PlotView extends View {
 				// canvas.save(Canvas.MATRIX_SAVE_FLAG);
 				mPaint.setStyle(Style.STROKE);
 				mPaint.setColor(p.color);
+				mPaint.setStrokeWidth(2);
 
 				//Uncomment to try 
 				//canvas.drawText(
@@ -154,8 +155,8 @@ public class PlotView extends View {
 
 					y = CanvasUtils.map((float) p.plotValues.get(i),
 							(float) mMinBoundary, (float) mMaxBoundary, (float) mHeight, 0f);
-					canvas.drawPoint(x, y, mPaint);
-					//canvas.drawCircle(x, y, 5, mPaint);
+					//canvas.drawPoint(x, y, mPaint);
+					canvas.drawCircle(x, y, 2, mPaint);
 
 					if (i < mNumPoints - 1) {
 						i++;

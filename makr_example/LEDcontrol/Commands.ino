@@ -17,10 +17,10 @@ void getCommands() {
     // phone side.  After reading it we would
     // parse it and then schedule the action.
 
-    if(inputString.startsWith("LEDON")){
+    if(inputString.startsWith("ledon")){
       digitalWrite(led, HIGH);
     } 
-    else if(inputString.startsWith("LEDOFF")){
+    else if(inputString.startsWith("ledoff")){
       digitalWrite(led, LOW);
     } 
 

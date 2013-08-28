@@ -37,7 +37,7 @@ public class MAKr {
 	private boolean isStarted = false;
 
 	public interface MAKrListener {
-		public void onMessageReceived(String cmd, String data);
+		public void onMessageReceived(String value);
 		public void onRawDataReceived(final byte[] buffer, final int size);
 	}
 
@@ -62,6 +62,8 @@ public class MAKr {
 		}
 
 	}
+	
+	
 
 	public void start() {
 		initializeMAKR();
@@ -96,9 +98,8 @@ public class MAKr {
 								public void run() {
 
 									receivedData = new String(buffer, 0, size);
-									String[] data = receivedData.split("::");
 									
-									l.onMessageReceived(data[0], data[1]);
+									l.onMessageReceived(receivedData);
 								}
 							});
 

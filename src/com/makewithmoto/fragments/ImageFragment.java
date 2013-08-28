@@ -1,4 +1,4 @@
-package com.makewithmoto.makr.fragments;
+package com.makewithmoto.fragments;
 
 import com.makewithmoto.example.R;
 import com.makewithmoto.example.R.drawable;

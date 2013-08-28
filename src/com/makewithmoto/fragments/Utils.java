@@ -1,4 +1,4 @@
-package com.makewithmoto.makr.fragments;
+package com.makewithmoto.fragments;
 /**
  * Class containing some useful functions when working with graphics 
  * 

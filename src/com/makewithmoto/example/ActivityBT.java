@@ -15,9 +15,9 @@ import android.widget.FrameLayout;
 
 import com.makewithmoto.bt.SimpleBT;
 import com.makewithmoto.bt.SimpleBT.SimpleBTListener;
-import com.makewithmoto.makr.fragments.DebugFragment;
-import com.makewithmoto.makr.views.PlotView;
-import com.makewithmoto.makr.views.PlotView.Plot;
+import com.makewithmoto.fragments.DebugFragment;
+import com.makewithmoto.views.PlotView;
+import com.makewithmoto.views.PlotView.Plot;
 
 /*
  * Example using a normal Bluetooth module 

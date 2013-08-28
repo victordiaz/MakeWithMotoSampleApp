@@ -1,12 +1,7 @@
-package com.makewithmoto.makr.fragments;
+package com.makewithmoto.fragments;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
-
-import com.makewithmoto.example.ActivityMAKr;
-import com.makewithmoto.example.R;
-import com.makewithmoto.example.R.id;
-import com.makewithmoto.example.R.layout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -29,6 +24,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.makewithmoto.example.ActivityMAKr;
+import com.makewithmoto.example.R;
 
 @SuppressLint("ShowToast")
 public class DebugFragment extends Fragment {
@@ -76,7 +74,7 @@ public class DebugFragment extends Fragment {
 				Log.d(TAG, cmd);
 
 				//TOFIX write to serial 
-				//c.makr.writeSerial(cmd);
+				((ActivityMAKr) c).makr.writeSerial(cmd);
 				adapter.addLeftItem(cmd);
 
 			}

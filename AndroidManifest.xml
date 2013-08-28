@@ -32,8 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.makewithmoto.example.ActivityJavascript" >
-        </activity>
         <activity android:name="com.makewithmoto.example.ActivityMAKr" >
         </activity>
         <activity android:name="com.makewithmoto.example.ActivityMOIO" >

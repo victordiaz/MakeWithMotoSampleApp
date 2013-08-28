@@ -19,13 +19,13 @@ import android.widget.Toast;
 
 import com.makewithmoto.boards.MAKr;
 import com.makewithmoto.boards.MAKr.MAKrListener;
-import com.makewithmoto.makr.fragments.DebugFragment;
-import com.makewithmoto.makr.views.PlotView;
-import com.makewithmoto.makr.views.PlotView.Plot;
+import com.makewithmoto.fragments.DebugFragment;
+import com.makewithmoto.views.PlotView;
+import com.makewithmoto.views.PlotView.Plot;
 
 /*
  * write to the board makr.writeSerial(cmd)
- * get data from the board onCommandReceived
+ * get data from the board onMessageReceived
  * 
  * 
  */
@@ -40,10 +40,7 @@ public class ActivityMAKr extends FragmentActivity {
 	private DebugFragment df;
 	private boolean f2V = true;
 
-
 	ActionBar actionBar;
-	
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +56,8 @@ public class ActivityMAKr extends FragmentActivity {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
-					makr.writeSerial("LEDON");
-					Toast.makeText(getApplicationContext(), "LEDON",
+					makr.writeSerial("ledon");
+					Toast.makeText(getApplicationContext(), "ledon",
 							Toast.LENGTH_LONG).show();
 				}
 			}
@@ -72,8 +69,8 @@ public class ActivityMAKr extends FragmentActivity {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
-					makr.writeSerial("LEDOFF");
-					Toast.makeText(getApplicationContext(), "LEDOFF",
+					makr.writeSerial("ledoff");
+					Toast.makeText(getApplicationContext(), "ledoff",
 							Toast.LENGTH_SHORT).show();
 				}
 			}
@@ -93,8 +90,8 @@ public class ActivityMAKr extends FragmentActivity {
 		graphView.addPlot(p1);
 
 		makr = new MAKr(this);
+		makr.initializeMAKR();
 		makr.addListener(new MAKrListener() {
-
 
 			@Override
 			public void onRawDataReceived(byte[] buffer, int size) {
@@ -102,11 +99,15 @@ public class ActivityMAKr extends FragmentActivity {
 			}
 
 			@Override
-			public void onMessageReceived(String cmd, String value) {
-				Log.d("received", cmd);
-				df.adapter.addRightItem(cmd + " " + value);
-				float val = Float.parseFloat(value);
-				graphView.setValue(p1, val);
+			public void onMessageReceived(String value) {
+				Log.d("received", value);
+				df.adapter.addRightItem(value);
+
+				// you can add things to the plot
+				/*
+				 * String[] data = value.split("::"); float val =
+				 * Float.parseFloat(data[1]); graphView.setValue(p1, val);
+				 */
 
 			}
 		});
@@ -133,6 +134,7 @@ public class ActivityMAKr extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		//makr.enable(false);
 		makr.pause();
 
 	}
@@ -166,16 +168,10 @@ public class ActivityMAKr extends FragmentActivity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-
-
-	
-
 	@Override
 	public void onStart() {
 		super.onStart();
 	}
-
-
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "onActivityResult " + resultCode);

@@ -1,4 +1,4 @@
-package com.makewithmoto.makr.views;
+package com.makewithmoto.views;
 
 /*
  * Taken from processing.org source code 

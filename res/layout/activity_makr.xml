@@ -44,7 +44,7 @@
 
     </FrameLayout>
     
-    <com.makewithmoto.makr.views.PlotView
+    <com.makewithmoto.views.PlotView
         android:id="@+id/plotView1"
         android:layout_width="wrap_content"
         android:layout_height="102dp"
